@@ -49,13 +49,26 @@
         .section-frame { padding: 80px 0; border-bottom: 1px solid var(--border); }
         .section-header { margin-bottom: 48px; }
         .section-header h2 { font-size: 28px; font-weight: 800; }
-        
+
         /* Vision, Mission, Values Grid */
         .vmv-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; }
         .vmv-node { border-left: 3px solid var(--accent); padding-left: 20px; }
         .vmv-node h3 { font-size: 18px; font-weight: 700; margin-bottom: 12px; color: var(--text); }
         .vmv-node p { font-size: 15px; color: var(--text-muted); line-height: 1.6; }
 
+/* Services */
+        .services-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+    gap: 40px; 
+}
+.service-card { 
+    background: var(--surface); 
+    border: 1px solid var(--border); 
+    padding: 32px; 
+    border-radius: 8px; 
+}
+        
         /* Two Pillars Services Grid */
         .services-row { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; margin-top: 64px; border-top: 1px solid var(--border); padding-top: 64px; }
         .service-block h4 { font-size: 20px; font-weight: 700; margin-bottom: 12px; color: var(--text); }
@@ -120,6 +133,26 @@
         </div>
     </section>
 
+<!-- Services Section -->
+    <section id="services" class="section-frame">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our services</h2>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>1. Smart Filing Systems & Data Compliance</h3>
+                    <p>We set up your Microsoft 365 and SharePoint so your team can work together safely. This includes creating automatic approval steps for business memos, setting up easy HR leave request tracks, and making sure your files follow the Nigeria Data Protection Act (NDPA) so you don't face government fines.</p>
+                </div>
+                <div class="service-card">
+                    <h3>2. Network Engineering & Communication Links</h3>
+                    <p>We install the physical hardware required to run a fast, secure office network. Our team sets up high-speed office cabling, security firewalls to keep hackers out, wireless connections across sites, and satellite dishes (VSAT) to keep remote offices connected even if regular internet fails.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
     <!-- Main Section (Vision, Mission, Values & Services) -->
     <section id="main" class="section-frame">
         <div class="container">
@@ -143,7 +176,7 @@
             <!-- What We Do Matrix -->
             <div class="services-row">
                 <div class="service-block">
-                    <h4>1. Document Management Systems & Data Protection & Privacy Compliance</h4>
+                    <h4>1. Document Management Systems and Data Protection & Privacy Compliance</h4>
                     <p>We set up your Microsoft 365 and SharePoint so your team can work together safely. This includes creating automatic approval steps for business memos, setting up easy HR leave request tracks, and making sure your files follow the Nigeria Data Protection Act (NDPA) so you don't face government fines.</p>
                 </div>
                 <div class="service-block">
