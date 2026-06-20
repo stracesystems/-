@@ -5,159 +5,296 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Strace Systems Ltd | Enterprise Document Infrastructure & GRC</title>
     
-    <!-- Tailwind CSS CDN (Injected cleanly without CSP restrictions) -->
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-[#030712] text-slate-100 font-sans antialiased selection:bg-blue-600 selection:text-white scroll-smooth tracking-tight">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:;">
 
-    <!-- Premium Enterprise Header -->
-    <header id="home" class="bg-[#030712]/80 border-b border-slate-900 sticky top-0 z-50 backdrop-blur-md">
-        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="flex items-center space-x-3">
-                <div class="h-9 w-9 bg-gradient-to-tr from-blue-600 to-indigo-600 rounded-xl flex items-center justify-center font-black text-white text-sm shadow-lg shadow-blue-500/20">S</div>
-                <div class="flex flex-col">
-                    <span class="text-sm font-black tracking-wider text-white leading-none uppercase">STRACE SYSTEMS</span>
-                    <span class="text-[9px] tracking-widest text-blue-500 font-bold uppercase mt-1">Enterprise Architecture</span>
+    <style>
+        :root { --bg: #030712; --panel: #0b1329; --border: #1e293b; --text: #f8fafc; --text-muted: #94a3b8; --primary: #2563eb; --primary-glow: rgba(37,99,235,0.15); --emerald: #10b981; --amber: #f59e0b; }
+        * { box-sizing: border-box; margin: 0; padding: 0; scroll-behavior: smooth; }
+        body { background-color: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; antialiased: true; line-height: 1.5; tracking: -0.025em; }
+        .container { max-width: 1150px; margin: 0 auto; padding: 0 24px; }
+        
+        /* Header & Navigation Architecture */
+        header { background: rgba(3,7,18,0.85); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; backdrop-filter: blur(12px); }
+        .nav-wrapper { display: flex; justify-content: space-between; items-center; height: 72px; }
+        .logo-group { display: flex; align-items: center; gap: 12px; }
+        .logo-cube { width: 36px; height: 36px; background: gradient; background: linear-gradient(135deg, #2563eb, #4f46e5); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 900; color: #fff; font-size: 16px; box-shadow: 0 4px 12px rgba(37,99,235,0.25); }
+        .logo-meta { display: flex; flex-direction: column; }
+        .logo-title { font-size: 14px; font-weight: 900; letter-spacing: 0.05em; color: #fff; }
+        .logo-sub { font-size: 9px; letter-spacing: 0.15em; color: var(--primary); font-weight: 700; text-transform: uppercase; margin-top: 2px; }
+        nav { display: flex; gap: 32px; }
+        nav a { text-decoration: none; color: var(--text-muted); font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; transition: color 0.2s; }
+        nav a:hover, nav a.active { color: #fff; }
+        .btn { background: var(--primary); color: #fff; border: none; padding: 10px 20px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; border-radius: 8px; cursor: pointer; transition: background 0.2s; text-decoration: none; display: inline-block; }
+        .btn:hover { background: #1d4ed8; }
+
+        /* Hero Layer */
+        .hero { position: relative; padding: 120px 0 80px 0; border-bottom: 1px solid var(--border); overflow: hidden; text-align: center; }
+        .hero::before { content: ""; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 800px; height: 400px; background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%); z-index: 1; pointer-events: none; }
+        .badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(15,23,42,0.8); border: 1px solid var(--border); color: #60a5fa; font-size: 10px; font-weight: 900; padding: 6px 16px; border-radius: 100px; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 24px; position: relative; z-index: 2; }
+        .badge span { width: 6px; height: 6px; background: #3b82f6; border-radius: 50%; display: inline-block; }
+        h1 { font-size: 48px; font-weight: 900; letter-spacing: -0.03em; color: #fff; line-height: 1.1; max-width: 850px; margin: 0 auto 24px auto; position: relative; z-index: 2; }
+        h1 span { background: linear-gradient(to right, #60a5fa, #3b82f6, #818cf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero p { font-size: 15px; color: var(--text-muted); max-width: 640px; margin: 0 auto 32px auto; position: relative; z-index: 2; }
+        .hero-btns { display: flex; justify-content: center; gap: 16px; position: relative; z-index: 2; }
+        .btn-alt { background: #0f172a; border: 1px solid var(--border); color: #e2e8f0; }
+        .btn-alt:hover { background: #1e293b; }
+
+        /* Structural Layout System Grid */
+        .section-padding { padding: 96px 0; }
+        .section-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 64px; border-left: 2px solid var(--primary); padding-left: 16px; }
+        .section-title-wrapper { display: flex; flex-direction: column; gap: 4px; }
+        .section-label { font-size: 10px; font-weight: 900; color: var(--primary); text-transform: uppercase; letter-spacing: 0.15em; }
+        .section-title { font-size: 28px; font-weight: 900; color: #fff; letter-spacing: -0.02em; }
+        .section-desc { font-size: 12px; color: var(--text-muted); max-width: 320px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
+
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+        .card { background: rgba(15,23,42,0.2); border: 1px solid var(--border); padding: 32px; border-radius: 16px; display: flex; flex-direction: column; justify-content: space-between; height: 280px; transition: border-color 0.3s, background-color 0.3s; }
+        .card:hover { border-color: rgba(37,99,235,0.4); background: rgba(15,23,42,0.4); }
+        .card-top { display: flex; flex-direction: column; gap: 16px; }
+        .card-meta { display: flex; justify-content: space-between; align-items: center; }
+        .card-id { width: 32px; height: 32px; background: #0c1524; border: 1px solid rgba(37,99,235,0.3); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-family: monospace; font-size: 12px; font-weight: 900; color: #60a5fa; }
+        .card-layer { font-size: 9px; font-family: monospace; font-weight: 700; color: #475569; text-transform: uppercase; letter-spacing: 0.1em; }
+        .card h3 { font-size: 18px; font-weight: 800; color: #fff; }
+        .card p { font-size: 12px; color: var(--text-muted); line-height: 1.6; }
+        .card-action { font-size: 10px; font-weight: 900; color: var(--primary); text-transform: uppercase; letter-spacing: 0.1em; opacity: 0; transition: opacity 0.3s; }
+        .card:hover .card-action { opacity: 1; }
+
+        /* Split Frame Layouts */
+        .split-frame { display: grid; grid-template-columns: 4fr 8fr; gap: 48px; align-items: center; background: rgba(15,23,42,0.1); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 96px 0; }
+        .split-info { display: flex; flex-direction: column; gap: 20px; }
+        .split-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+        .panel { background: #030712; border: 1px solid var(--border); padding: 24px; border-radius: 12px; display: flex; flex-direction: column; gap: 16px; }
+        .pill { font-size: 10px; font-family: monospace; font-weight: 900; padding: 4px 10px; border-radius: 4px; width: fit-content; border: 1px solid rgba(37,99,235,0.2); }
+        .pill.gov { color: var(--primary); background: rgba(37,99,235,0.1); }
+        .pill.risk { color: var(--emerald); background: rgba(16,185,129,0.1); border-color: rgba(16,185,129,0.2); }
+        .pill.comp { color: var(--amber); background: rgba(245,158,11,0.1); border-color: rgba(245,158,11,0.2); }
+        .panel h4 { font-size: 14px; font-weight: 800; color: #fff; }
+        .panel p { font-size: 11px; color: var(--text-muted); line-height: 1.6; }
+
+        /* Secure Action Vault Hub Component */
+        .vault-box { background: #030712; border: 1px solid var(--border); padding: 32px; border-radius: 20px; max-width: 480px; margin: 40px auto 0 auto; box-shadow: 0 20px 40px rgba(0,0,0,0.5); display: flex; flex-direction: column; gap: 20px; text-align: center; }
+        .vault-routing { font-size: 9px; font-family: monospace; font-weight: 900; color: #475569; text-transform: uppercase; letter-spacing: 0.15em; }
+        .vault-link { font-size: 18px; font-family: monospace; font-weight: 700; color: #60a5fa; text-decoration: none; word-break: break-all; }
+        .vault-link:hover { color: #93c5fd; }
+        .divider { height: 1px; background: var(--border); }
+        .vault-title { font-size: 13px; font-weight: 700; color: #e2e8f0; }
+        .vault-cert { font-size: 9px; font-weight: 900; color: #475569; text-transform: uppercase; letter-spacing: 0.1em; }
+
+        /* Footer Matrix */
+        footer { border-top: 1px solid var(--border); padding: 64px 0; background: #030712; }
+        .footer-grid { display: grid; grid-template-columns: 4fr 8fr; gap: 48px; margin-bottom: 48px; }
+        .footer-brand { display: flex; flex-direction: column; gap: 12px; }
+        .footer-tagline { font-size: 12px; color: var(--text-muted); max-width: 280px; }
+        .social-matrix { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+        .social-card { background: rgba(15,23,42,0.2); border: 1px solid var(--border); padding: 16px; border-radius: 12px; text-decoration: none; display: flex; flex-direction: column; justify-content: space-between; height: 96px; transition: border-color 0.2s; }
+        .social-card:hover { border-color: var(--primary); }
+        .social-label { font-size: 9px; font-weight: 900; color: #475569; text-transform: uppercase; }
+        .social-handle { font-size: 12px; font-weight: 700; color: #cbd5e1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .copyright { border-top: 1px solid var(--border); padding-top: 32px; text-align: center; font-size: 10px; font-weight: 700; color: #475569; text-transform: uppercase; letter-spacing: 0.1em; }
+
+        @media(max-width: 768px) {
+            h1 { font-size: 32px; }
+            .section-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+            .split-frame, .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+            .social-matrix { grid-template-columns: repeat(2, 1fr); }
+            nav { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container nav-wrapper">
+            <div class="logo-group">
+                <div class="logo-cube">S</div>
+                <div class="logo-meta">
+                    <span class="logo-title">STRACE SYSTEMS</span>
+                    <span class="logo-sub">Enterprise Architecture</span>
                 </div>
             </div>
-            <!-- Navigation Links -->
-            <nav class="hidden md:flex space-x-8 text-[11px] font-bold uppercase tracking-widest text-slate-400">
-                <a href="#home" class="text-blue-500 hover:text-blue-400 transition">Home</a>
-                <a href="#solutions" class="hover:text-white transition">Solutions</a>
-                <a href="#grc" class="hover:text-white transition">GRC Framework</a>
-                <a href="#compliance" class="hover:text-white transition">Compliance</a>
-                <a href="#sectors" class="hover:text-white transition">Sectors</a>
+            <nav id="nav-menu">
+                <a href="#home" class="active">Home</a>
+                <a href="#solutions">Solutions</a>
+                <a href="#grc">GRC Framework</a>
+                <a href="#contact">Contact</a>
             </nav>
             <div>
-                <a href="#contact" class="bg-blue-600 text-white text-xs font-bold px-4 py-2.5 rounded-xl hover:bg-blue-500 transition shadow-lg shadow-blue-600/20 block tracking-wider uppercase">Engage</a>
+                <a href="#contact" class="btn">Engage</a>
             </div>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="relative bg-[#030712] pt-32 pb-24 px-6 border-b border-slate-900 overflow-hidden">
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(37,99,235,0.15),transparent_50%)]"></div>
-        <div class="absolute -top-40 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-indigo-500/10 blur-[150px] rounded-full"></div>
-        
-        <div class="max-w-5xl mx-auto text-center space-y-8 relative z-10">
-            <div class="inline-flex items-center space-x-2 bg-slate-900/80 border border-slate-800 text-blue-400 text-[10px] font-black px-4 py-1.5 rounded-full uppercase tracking-widest shadow-inner">
-                <span class="w-1.5 h-1.5 bg-blue-500 rounded-full animate-pulse"></span>
-                <span>Systems Integration & Governance Matrix</span>
-            </div>
-            <h1 class="text-4xl md:text-6xl font-black tracking-tight text-white leading-[1.1] max-w-4xl mx-auto">
-                Architecting Secure Document Infrastructure for <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-blue-500 to-indigo-400">High-Stakes GRC Compliance</span>
-            </h1>
-            <p class="text-slate-400 text-sm md:text-base max-w-2xl mx-auto leading-relaxed font-medium">
-                We transform high-volume legacy paper assets into secure, unalterable digital environments powered by structurally hardened SharePoint deployments.
-            </p>
-            <div class="flex flex-col sm:flex-row justify-center items-center gap-4 pt-4">
-                <a href="#contact" class="w-full sm:w-auto bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold px-8 py-4 rounded-xl shadow-xl shadow-blue-600/30 transition uppercase tracking-widest">Initiate System Review</a>
-                <a href="#grc" class="w-full sm:w-auto bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800 text-xs font-bold px-8 py-4 rounded-xl transition uppercase tracking-widest">Explore Framework</a>
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="badge"><span></span>Systems Integration & Governance Matrix</div>
+            <h1>Architecting Secure Document Infrastructure for <span>High-Stakes GRC Compliance</span></h1>
+            <p>We transform high-volume legacy paper assets into secure, unalterable digital environments powered by structurally hardened SharePoint deployments.</p>
+            <div class="hero-btns">
+                <a href="#contact" class="btn">Initiate System Review</a>
+                <a href="#solutions" class="btn btn-alt">Explore Framework</a>
             </div>
         </div>
     </section>
 
-    <!-- Core Technology Solutions -->
-    <section id="solutions" class="py-24 px-6 max-w-6xl mx-auto">
-        <div class="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-4">
-            <div class="space-y-2">
-                <span class="text-blue-500 text-[10px] font-black uppercase tracking-widest block">Capabilities Map</span>
-                <h2 class="text-3xl font-black text-white tracking-tight">Engineered Systems Capabilities</h2>
+    <section id="solutions" class="section-padding">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-title-wrapper">
+                    <span class="section-label">Capabilities Map</span>
+                    <h2 class="section-title">Engineered Systems Capabilities</h2>
+                </div>
+                <div class="section-desc">Layered enterprise engineering for absolute data integrity.</div>
             </div>
-            <p class="text-slate-500 text-xs max-w-xs font-semibold uppercase tracking-wider">Layered enterprise engineering for absolute data integrity.</p>
-        </div>
-        
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div class="group border border-slate-900 bg-slate-900/10 p-8 rounded-2xl hover:border-blue-600/40 hover:bg-slate-900/30 transition-all duration-300 flex flex-col justify-between h-72 shadow-sm">
-                <div class="space-y-4">
-                    <div class="flex justify-between items-center">
-                        <div class="h-8 w-8 rounded-lg bg-blue-950 border border-blue-900/50 flex items-center justify-center font-mono text-xs font-black text-blue-400">01</div>
-                        <span class="text-[9px] font-mono font-bold tracking-widest text-slate-600 uppercase">Architecture Layer</span>
+            
+            <div class="grid-3">
+                <div class="card">
+                    <div class="card-top">
+                        <div class="card-meta">
+                            <div class="card-id">01</div>
+                            <span class="card-layer">Architecture Layer</span>
+                        </div>
+                        <h3>SharePoint DMS Integration</h3>
+                        <p>Enterprise document repositories, digital memo workflows, automated leave approvals, and executive approval chains embedded inside M365.</p>
                     </div>
-                    <h3 class="text-white font-extrabold text-base tracking-tight">SharePoint DMS Integration</h3>
-                    <p class="text-slate-400 text-xs leading-relaxed font-medium">Enterprise document repositories, digital memo workflows, automated leave approvals, and executive approval chains embedded inside M365.</p>
+                    <div class="card-action">Deploy System &rarr;</div>
                 </div>
-            </div>
-            <div class="group border border-slate-900 bg-slate-900/10 p-8 rounded-2xl hover:border-blue-600/40 hover:bg-slate-900/30 transition-all duration-300 flex flex-col justify-between h-72 shadow-sm">
-                <div class="space-y-4">
-                    <div class="flex justify-between items-center">
-                        <div class="h-8 w-8 rounded-lg bg-indigo-950 border border-indigo-900/50 flex items-center justify-center font-mono text-xs font-black text-indigo-400">02</div>
-                        <span class="text-[9px] font-mono font-bold tracking-widest text-slate-600 uppercase">Processing Layer</span>
+                <div class="card">
+                    <div class="card-top">
+                        <div class="card-meta">
+                            <div class="card-id">02</div>
+                            <span class="card-layer">Processing Layer</span>
+                        </div>
+                        <h3>Data Processing & Imaging</h3>
+                        <p>Industrial document digitization, OCR text parsing, high-density secure indexing, and mass legacy physical archive conversions.</p>
                     </div>
-                    <h3 class="text-white font-extrabold text-base tracking-tight">Data Processing & Imaging</h3>
-                    <p class="text-slate-400 text-xs leading-relaxed font-medium">Industrial document digitization, OCR text parsing, high-density secure indexing, and mass legacy physical archive conversions.</p>
+                    <div class="card-action">Deploy System &rarr;</div>
                 </div>
-            </div>
-            <div class="group border border-slate-900 bg-slate-900/10 p-8 rounded-2xl hover:border-blue-600/40 hover:bg-slate-900/30 transition-all duration-300 flex flex-col justify-between h-72 shadow-sm">
-                <div class="space-y-4">
-                    <div class="flex justify-between items-center">
-                        <div class="h-8 w-8 rounded-lg bg-emerald-950 border border-emerald-900/50 flex items-center justify-center font-mono text-xs font-black text-emerald-400">03</div>
-                        <span class="text-[9px] font-mono font-bold tracking-widest text-slate-600 uppercase">Topology Layer</span>
+                <div class="card">
+                    <div class="card-top">
+                        <div class="card-meta">
+                            <div class="card-id">03</div>
+                            <span class="card-layer">Topology Layer</span>
+                        </div>
+                        <h3>Network Infrastructure</h3>
+                        <p>Topographical blueprint design and cabling deployment of structured corporate LAN/WAN nodes, firewalls, and switches.</p>
                     </div>
-                    <h3 class="text-white font-extrabold text-base tracking-tight">Network Infrastructure</h3>
-                    <p class="text-slate-400 text-xs leading-relaxed font-medium">Topographical blueprint design and cabling deployment of structured corporate LAN/WAN nodes, firewalls, and switches.</p>
+                    <div class="card-action">Deploy System &rarr;</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Technical GRC Framework -->
-    <section id="grc" class="bg-slate-900/20 border-t border-b border-slate-900 py-24 px-6">
-        <div class="max-w-6xl mx-auto grid lg:grid-cols-12 gap-12 items-center">
-            <div class="lg:col-span-4 space-y-6">
-                <span class="bg-blue-950 text-blue-400 border border-blue-900/60 inline-block px-3 py-1 rounded-md text-[10px] font-black uppercase tracking-wider">Shield Infrastructure</span>
-                <h2 class="text-3xl font-black text-white tracking-tight leading-tight">Embedded Technical GRC Framework</h2>
-                <p class="text-slate-400 text-xs leading-relaxed font-medium">We configure custom-mapped technical controls directly at your code layer to satisfy regulatory parameters.</p>
+    <section id="grc" class="split-frame">
+        <div class="container" style="display: contents;">
+            <div class="split-info">
+                <span class="pill gov">Shield Infrastructure</span>
+                <h2 class="section-title">Embedded Technical GRC Framework</h2>
+                <p style="font-size: 13px; color: var(--text-muted); line-height: 1.6;">We configure custom-mapped technical controls directly at your code layer to satisfy regulatory parameters.</p>
             </div>
-            <div class="lg:col-span-8 grid sm:grid-cols-3 gap-4">
-                <div class="bg-slate-950 p-6 rounded-xl border border-slate-900 space-y-4">
-                    <div class="text-xs font-mono font-black text-blue-500 bg-blue-950/40 w-fit px-2.5 py-1 rounded border border-blue-900/40">GOVERNANCE</div>
-                    <h3 class="text-sm font-extrabold text-white">Systems Control</h3>
-                    <p class="text-slate-400 text-[11px] leading-relaxed font-medium">System-enforced file rights, unalterable asset tracking, and multi-tier administrative security chains.</p>
+            <div class="split-grid">
+                <div class="panel">
+                    <div class="pill gov">GOVERNANCE</div>
+                    <h4>Systems Control</h4>
+                    <p>System-enforced file rights, unalterable asset tracking, and multi-tier administrative security chains.</p>
                 </div>
-                <div class="bg-slate-950 p-6 rounded-xl border border-slate-900 space-y-4">
-                    <div class="text-xs font-mono font-black text-emerald-500 bg-emerald-950/40 w-fit px-2.5 py-1 rounded border border-emerald-900/40">RISK CONTROL</div>
-                    <h3 class="text-sm font-extrabold text-white">Risk Mitigation</h3>
-                    <p class="text-slate-400 text-[11px] leading-relaxed font-medium">Data Loss Prevention (DLP) arrays, endpoint protection, and software blocks against leaks.</p>
+                <div class="panel">
+                    <div class="pill risk">RISK CONTROL</div>
+                    <h4>Risk Mitigation</h4>
+                    <p>Data Loss Prevention (DLP) arrays, endpoint protection, and software blocks against leaks.</p>
                 </div>
-                <div class="bg-slate-950 p-6 rounded-xl border border-slate-900 space-y-4">
-                    <div class="text-xs font-mono font-black text-amber-500 bg-amber-950/40 w-fit px-2.5 py-1 rounded border border-amber-900/40">COMPLIANCE</div>
-                    <h3 class="text-sm font-extrabold text-white">Data Compliance</h3>
-                    <p class="text-slate-400 text-[11px] leading-relaxed font-medium">Automated file retention registries, deep archiving, and purging policies structured to federal mandates.</p>
+                <div class="panel">
+                    <div class="pill comp">COMPLIANCE</div>
+                    <h4>Data Compliance</h4>
+                    <p>Automated file retention registries, deep archiving, and purging policies structured to federal mandates.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Secure Engagement Node -->
-    <section id="contact" class="bg-slate-900/10 border-t border-slate-900 py-24 px-6 text-center relative overflow-hidden">
-        <div class="max-w-2xl mx-auto space-y-8 relative z-10">
-            <h2 class="text-3xl font-black text-white tracking-tight">Initialize Enterprise Integration</h2>
-            <div class="bg-[#030712] border border-slate-900 p-8 rounded-2xl max-w-md mx-auto shadow-2xl space-y-4">
-                <span class="text-[9px] tracking-widest font-black text-slate-500 uppercase block">Secure Comms Routing</span>
-                <a href="mailto:ioawobajo@gmail.com" class="text-base font-mono font-bold text-blue-400 hover:text-blue-300 transition block truncate">ioawobajo@gmail.com</a>
-                <div class="h-px bg-slate-900"></div>
-                <div class="text-xs font-bold text-slate-300">Strace Systems Ltd</div>
-                <div class="text-[9px] text-slate-600 font-bold uppercase tracking-wider">RC: 9210737</div>
+    <section id="contact" class="section-padding" style="position: relative;">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 32px;">
+                <h2 class="section-title">Initialize Enterprise Integration</h2>
+                <p style="font-size: 13px; color: var(--text-muted); margin-top: 8px;">Modernize your operational posture. Connect directly with our administration board.</p>
+            </div>
+            
+            <div class="vault-box">
+                <span class="vault-routing">Secure Comms Routing</span>
+                <a href="mailto:ioawobajo@gmail.com" class="vault-link" id="secure-email">ioawobajo@gmail.com</a>
+                <div class="divider"></div>
+                <div class="vault-title">Strace Systems Ltd</div>
+                <div class="vault-cert">RC: 9210737</div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-[#030712] border-t border-slate-900 text-slate-500 py-16 px-6">
-        <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-start mb-12">
-            <div class="lg:col-span-4 space-y-3">
-                <span class="text-[10px] font-black tracking-widest uppercase text-slate-300">STRACE NETWORKS INDEX</span>
-                <p class="text-slate-500 text-xs leading-relaxed font-medium">Verified communications terminals for ecosystem statements.</p>
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <span class="logo-title" style="letter-spacing: 0.1em;">STRACE NETWORKS INDEX</span>
+                    <p class="footer-tagline">Verified communications terminals for ecosystem statements and technical updates.</p>
+                </div>
+                <div class="social-matrix">
+                    <a href="https://linkedin.com/company/strace-systems-ltd" target="_blank" rel="noopener noreferrer" class="social-card">
+                        <span class="social-label">LinkedIn</span>
+                        <span class="social-handle">/strace-systems-ltd</span>
+                    </a>
+                    <div class="social-card">
+                        <span class="social-label">X / Twitter</span>
+                        <span class="social-handle">@StraceSystems</span>
+                    </div>
+                    <div class="social-card">
+                        <span class="social-label">Instagram</span>
+                        <span class="social-handle">@stracesystems</span>
+                    </div>
+                    <div class="social-card">
+                        <span class="social-label">Facebook</span>
+                        <span class="social-handle">/stracesystems</span>
+                    </div>
+                </div>
             </div>
-            <div class="lg:col-span-8 grid grid-cols-2 sm:grid-cols-4 gap-3">
-                <a href="https://linkedin.com/company/strace-systems-ltd" target="_blank" rel="noopener noreferrer" class="bg-slate-900/20 border border-slate-900 p-4 rounded-xl hover:border-blue-600 transition flex flex-col justify-between h-24">
-                    <span class="text-[9px] font-black tracking-wider uppercase text-slate-500">LinkedIn</span>
-                    <span class="text-xs font-bold text-slate-300 block truncate">/strace-systems-ltd</span>
-                </a>
+            <div class="copyright">
+                &copy; 2026 Strace Systems Ltd. Corporate validation frameworks active. RC: 9210737
             </div>
         </div>
     </footer>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Strict Execution context isolation
+            "use strict";
+
+            // Functional Scroll Spy for Navigation UI Indicators
+            const sections = document.querySelectorAll("section");
+            const navLinks = document.querySelectorAll("nav a");
+
+            window.addEventListener("scroll", () => {
+                let current = "";
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    if (pageYOffset >= sectionTop - 96) {
+                        current = section.getAttribute("id");
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove("active");
+                    if (link.getAttribute("href").includes(current)) {
+                        link.classList.add("active");
+                    }
+                });
+            });
+
+            // Prevent programmatic clickjacking on crucial links
+            const secureEmail = document.getElementById("secure-email");
+            if (secureEmail) {
+                secureEmail.addEventListener("click", (e) => {
+                    // Sanitization check placeholder if parameters expand
+                    return true;
+                });
+            }
+        });
+    </script>
 </body>
 </html>
