@@ -8,14 +8,14 @@
     <!-- DevSecOps Strict Content Security Policy -->
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: *;">
 
-    <!-- Premium Minimalist Native Stylesheet -->
+    <!-- Premium Minimalist Light Core Stylesheet -->
     <style>
         :root {
-            --bg: #09090b;
-            --surface: #18181b;
-            --border: #27272a;
-            --text: #fafafa;
-            --text-muted: #a1a1aa;
+            --bg: #fafafa;
+            --surface: #ffffff;
+            --border: #e4e4e7;
+            --text: #09090b;
+            --text-muted: #52525b;
             --accent: #2563eb;
         }
 
@@ -23,8 +23,8 @@
         body { background-color: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; letter-spacing: -0.02em; }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
         
-        /* Premium Minimal Navigation */
-        header { border-bottom: 1px solid var(--border); background: rgba(9, 9, 11, 0.8); position: sticky; top: 0; z-index: 100; backdrop-filter: blur(20px); }
+        /* Premium Minimal Navigation (Light Theme) --> */
+        header { border-bottom: 1px solid var(--border); background: rgba(250, 250, 250, 0.8); position: sticky; top: 0; z-index: 100; backdrop-filter: blur(20px); }
         .nav-inner { display: flex; justify-content: space-between; align-items: center; height: 80px; }
         
         .brand-block { display: flex; align-items: center; gap: 16px; text-decoration: none; color: inherit; }
@@ -39,54 +39,56 @@
         .cta-btn:hover { opacity: 0.9; }
 
         /* Global Brand Hero Layout */
-        .hero { padding: 160px 0 120px 0; border-bottom: 1px solid var(--border); }
+        .hero { padding: 160px 0 120px 0; border-bottom: 1px solid var(--border); background-color: var(--surface); }
         .hero-layout { max-width: 900px; }
         .meta-tag { font-size: 11px; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 24px; display: block; }
-        h1 { font-size: 56px; font-weight: 800; tracking: -0.04em; line-height: 1.05; color: var(--text); margin-bottom: 32px; }
+        h1 { font-size: 56px; font-weight: 800; letter-spacing: -0.04em; line-height: 1.05; color: var(--text); margin-bottom: 32px; }
         h1 span { color: var(--text-muted); }
         .hero p { font-size: 18px; line-height: 1.6; color: var(--text-muted); max-width: 680px; margin-bottom: 40px; }
         
-        /* Modern Structured Service Grid */
+        /* Modern Structured Section Frames */
         .section-frame { padding: 120px 0; border-bottom: 1px solid var(--border); }
-        .grid-layout { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; margin-top: 64px; }
-        
-        .section-meta { max-width: 600px; }
+        .section-meta { max-width: 700px; margin-bottom: 64px; }
         .section-meta h2 { font-size: 32px; font-weight: 800; letter-spacing: -0.03em; }
         .section-meta p { font-size: 15px; color: var(--text-muted); margin-top: 16px; line-height: 1.6; }
         
+        /* Inseparable Core Block Layout (Deep Dive 1) */
+        .inseparable-block { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 48px; margin-bottom: 80px; }
+        .inseparable-header { border-bottom: 1px solid var(--border); padding-bottom: 24px; margin-bottom: 32px; }
+        .inseparable-header h3 { font-size: 24px; font-weight: 800; color: var(--text); }
+        .inseparable-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 32px; }
+        .sub-feature h4 { font-size: 16px; font-weight: 700; margin-bottom: 12px; color: var(--text); }
+        .sub-feature p { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
+
+        /* Separate Services Matrix (Deep Dive 2) */
+        .grid-layout { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; }
         .service-node { border-top: 1px solid var(--border); padding-top: 32px; display: flex; flex-direction: column; gap: 16px; }
-        .node-index { font-family: monospace; font-size: 11px; color: var(--text-muted); }
+        .node-index { font-family: monospace; font-size: 11px; color: var(--text-muted); font-weight: 600; }
         .service-node h3 { font-size: 20px; font-weight: 700; color: var(--text); }
         .service-node p { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
 
-        /* Dual-Column Minimal Matrix */
-        .split-row { display: grid; grid-template-columns: 5fr 7fr; gap: 80px; align-items: start; }
-        .list-matrix { display: flex; flex-direction: column; gap: 32px; }
-        .matrix-item { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); padding-bottom: 20px; }
-        .matrix-left { display: flex; flex-direction: column; gap: 6px; }
-        .matrix-label { font-size: 15px; font-weight: 600; color: var(--text); }
-        .matrix-sub { font-size: 12px; color: var(--text-muted); }
-        .matrix-tag { font-family: monospace; font-size: 10px; font-weight: 700; border: 1px solid var(--border); padding: 4px 8px; border-radius: 4px; color: var(--text-muted); }
+        /* Blockquote Callout Grid */
+        blockquote { font-size: 15px; font-style: normal; border-left: 3px solid var(--text); padding-left: 20px; color: var(--text-muted); line-height: 1.6; margin: 40px 0; }
 
         /* Radical Secure Contact Node */
-        .contact-box { background: var(--surface); border: 1px solid var(--border); padding: 64px; border-radius: 12px; text-align: center; max-width: 640px; margin: 40px auto 0 auto; }
+        .contact-box { background: var(--surface); border: 1px solid var(--border); padding: 64px; border-radius: 12px; text-align: center; max-width: 640px; margin: 40px auto 0 auto; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
         .contact-box h3 { font-size: 24px; font-weight: 800; margin-bottom: 12px; }
         .contact-box p { font-size: 14px; color: var(--text-muted); margin-bottom: 32px; }
-        .secure-mailto { font-family: monospace; font-size: 20px; font-weight: 600; color: var(--text); text-decoration: none; padding: 16px; border: 1px solid var(--border); display: block; border-radius: 8px; transition: border-color 0.2s; }
-        .secure-mailto:hover { border-color: var(--text-muted); }
+        .secure-mailto { font-family: monospace; font-size: 20px; font-weight: 600; color: var(--text); text-decoration: none; padding: 16px; border: 1px solid var(--border); display: block; border-radius: 8px; transition: background-color 0.2s, border-color 0.2s; background: var(--bg); }
+        .secure-mailto:hover { border-color: var(--text-muted); background: var(--surface); }
 
         /* Footer Architecture */
-        footer { padding: 80px 0 40px 0; font-size: 12px; color: var(--text-muted); }
-        .footer-inner { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border); padding-top: 40px; }
+        footer { padding: 80px 0 40px 0; font-size: 12px; color: var(--text-muted); background: var(--surface); border-top: 1px solid var(--border); }
+        .footer-inner { display: flex; justify-content: space-between; align-items: center; }
         .footer-links { display: flex; gap: 32px; }
         .footer-links a { color: inherit; text-decoration: none; transition: color 0.2s; }
         .footer-links a:hover { color: var(--text); }
 
         @media(max-width: 768px) {
             h1 { font-size: 38px; }
-            .split-row { grid-template-columns: 1fr; gap: 48px; }
             nav, header .cta-btn { display: none; }
             .footer-inner { flex-direction: column; gap: 24px; text-align: center; }
+            .inseparable-block { padding: 24px; }
         }
     </style>
 </head>
@@ -96,13 +98,13 @@
     <header>
         <div class="container nav-inner">
             <a href="#home" class="brand-block">
-                <!-- Native Corporate Logo Element Mapping -->
+                <!-- Native Corporate Logo Insertion -->
                 <img class="brand-logo" src="logo.jpeg" alt="Strace Systems">
                 <span class="brand-text">Strace</span>
             </a>
             <nav>
-                <a href="#services" class="active">Pillars</a>
-                <a href="#framework">GRC Matrix</a>
+                <a href="#digital-governance" class="active">Digital Governance</a>
+                <a href="#infrastructure">Infrastructure Services</a>
                 <a href="#connect">Contact</a>
             </nav>
             <a href="#connect" class="cta-btn">Engage</a>
@@ -115,101 +117,111 @@
             <div class="hero-layout">
                 <span class="meta-tag">Enterprise Architecture Integrator</span>
                 <h1>Architecting digital sovereignty. <span>Hardened infrastructure for regulated industries.</span></h1>
-                <p>We engineer secure physical transport layers and convert standard collaborative systems into legally unalterable, regulatory-compliant digital environments.</p>
+                <p>We design the secure physical networks and satellite terminals required to keep enterprise companies safely connected. Then, we configure their Microsoft 365 environments into unalterable document systems that automatically protect them from regulatory lawsuits and data protection fines.</p>
                 <a href="#connect" class="cta-btn">Initiate Corporate Infrastructure Review</a>
             </div>
         </div>
     </section>
 
-    <!-- Strategic Pillars Section -->
-    <section id="services" class="section-frame">
+    <!-- Inseparable Core Layer: Deep Dive 1 -->
+    <section id="digital-governance" class="section-frame">
         <div class="container">
             <div class="section-meta">
-                <h2>Operational Capabilities</h2>
-                <p>Strace Systems simplifies complex enterprise compliance and physical topology into two refined engineering disciplines.</p>
+                <span class="meta-tag">Architectural Pillar 01</span>
+                <h2>Digital Governance & Hardened DMS</h2>
+                <p>We do not just set up cloud storage. We configure software environments so that your workforce natively executes federal compliance laws and institutional rules without cognitive overhead.</p>
             </div>
-            
-            <div class="grid-layout">
-                <!-- Strategic Core 1 -->
-                <div class="service-node">
-                    <span class="node-index">01 / PILLAR</span>
-                    <h3>Digital Governance & Hardened DMS</h3>
-                    <p>Transforming Microsoft 365 environments into unalterable compliance engines. We write the software constraints required to deploy permanent executive document lifecycles, structured digital memo verification loops, and legally auditable file management protocols.</p>
+
+            <div class="inseparable-block">
+                <div class="inseparable-header">
+                    <h3>The Integrated Governance Engine</h3>
                 </div>
-                <!-- Strategic Core 2 -->
-                <div class="service-node">
-                    <span class="node-index">02 / PILLAR</span>
-                    <h3>Infrastructure & Telecommunications</h3>
-                    <p>Designing and deploying the mission-critical hardware networks necessary to isolate data assets. Engineered topologies spanning high-density LAN/WAN office nodes, peripheral edge firewalls, long-range microwave links, and sovereign VSAT satellite terminal stations.</p>
-                </div>
-                <!-- Delivery Vector 3 -->
-                <div class="service-node">
-                    <span class="node-index">03 / CAPABILITY</span>
-                    <h3>High-Volume Digitization</h3>
-                    <p>Industrial imaging operations capable of translating extensive, high-liability paper legacies into crisp, indexed digital structures. Leverages native Optical Character Recognition (OCR) text parsing engines and secure classification routing schemes.</p>
-                </div>
-                <!-- Delivery Vector 4 -->
-                <div class="service-node">
-                    <span class="node-index">04 / CAPABILITY</span>
-                    <h3>Sovereign Telemetry Links</h3>
-                    <p>Deploying redundant satellite ground terminals to safeguard multi-facility corporate networks against local ground-fiber failure points, ensuring continuous connection to secure backend infrastructure.</p>
-                </div>
-                <!-- Delivery Vector 5 -->
-                <div class="service-node">
-                    <span class="node-index">05 / CAPABILITY</span>
-                    <h3>System Procurement</h3>
-                    <p>End-to-end technological sourcing and lifecycle management. Supplying verified high-performance network switches, secure server architectures, and specialized data-capture equipment.</p>
-                </div>
-                <!-- Delivery Vector 6 -->
-                <div class="service-node">
-                    <span class="node-index">06 / CAPABILITY</span>
-                    <h3>Turnkey Operational Execution</h3>
-                    <p>Managing complete, large-scale technological overhauls for commercial enterprises and public sector agencies, executed under strict, board-reviewed Service Level Agreements.</p>
+                <div class="inseparable-grid">
+                    <div class="sub-feature">
+                        <h4>SharePoint DMS Hardening</h4>
+                        <p>Converting standard Microsoft 365 setups into legally unalterable Document Management Systems. We eliminate loose permissions, blind file sharing, and unauthorized data leakage across corporate endpoints.</p>
+                    </div>
+                    <div class="sub-feature">
+                        <h4>Immutable Exec Memos</h4>
+                        <p>Transitioning high-liability internal operations out of paper. Administrative memos traverse automated, unchangeable digital pathways. Once approved, signatures are cryptographically logged and permanent historical locks are applied.</p>
+                    </div>
+                    <div class="sub-feature">
+                        <h4>Automated Leave & HR Paths</h4>
+                        <p>Eliminating human gaps in corporate resource allocation. System logic automatically routes employee leave requests, updates availability registers, and locks files to ensure strict record maintenance.</p>
+                    </div>
+                    <div class="sub-feature">
+                        <h4>NDPA Compliance Locks</h4>
+                        <p>Hard-coding statutory requirements like the Nigeria Data Protection Act and ISO 27001 directly into your storage architecture, instantly shielding directors from data-handling liability.</p>
+                    </div>
+                    <div class="sub-feature">
+                        <h4>Automated Purge Registries</h4>
+                        <p>Satisfying legal data boundaries automatically. System triggers calculate retention timelines, executing un-overrideable, absolute deletions exactly seven years after files transition to closed state.</p>
+                    </div>
                 </div>
             </div>
+
+            <blockquote>
+                <strong>The Strategy Shift:</strong> By nesting the document architecture directly within your risk management framework, the system itself acts as your chief compliance officer—preventing data degradation, rogue file edits, and compliance failures at the root.
+            </blockquote>
         </div>
     </section>
 
-    <!-- GRC Matrix Framework Section -->
-    <section id="framework" class="section-frame">
-        <div class="container split-row">
+    <!-- Modular Infrastructure Matrix: Deep Dive 2 -->
+    <section id="infrastructure" class="section-frame" style="background-color: var(--surface);">
+        <div class="container">
             <div class="section-meta">
-                <span class="meta-tag" style="margin-bottom: 16px;">Automated Protections</span>
-                <h2>Sovereign Rules Engine</h2>
-                <p>We configure compliance directly at the platform layer. By embedding regulatory requirements into your active storage structures, we shield executive boards from the liability of data breaches and statutory oversight penalties.</p>
+                <span class="meta-tag">Architectural Pillar 02</span>
+                <h2>Physical Infrastructure Engineering</h2>
+                <p>A secure software layer is only as resilient as the hardware it inhabits. We deploy isolated, reliable physical pathways designed to maintain operational uptime under high stress loads.</p>
             </div>
-            <div class="list-matrix">
-                <div class="matrix-item">
-                    <div class="matrix-left">
-                        <span class="matrix-label">Immutable File Verification</span>
-                        <span class="matrix-sub">Cryptographically logged approvals and hard-locked workflows inside SharePoint to prevent retrospective editing.</span>
-                    </div>
-                    <span class="matrix-tag">GRC_ENFORCED</span>
+
+            <div class="grid-layout">
+                <!-- Service Node 1 -->
+                <div class="service-node">
+                    <span class="node-index">01 / CAPABILITY</span>
+                    <h3>High-Density LAN/WAN Nodes</h3>
+                    <p>Engineering robust internal copper/fiber building wiring (LAN) and secure cross-regional office connections (WAN) that manage massive data throughput without bottlenecking your operations.</p>
                 </div>
-                <div class="matrix-item">
-                    <div class="matrix-left">
-                        <span class="matrix-label">Network Edge Defense</span>
-                        <span class="matrix-sub">Hardware-level firewalls, custom domain rules, and strict Data Loss Prevention (DLP) parameters to stop unauthorized transmission.</span>
-                    </div>
-                    <span class="matrix-tag">NET_HARDENING</span>
+                <!-- Service Node 2 -->
+                <div class="service-node">
+                    <span class="node-index">02 / CAPABILITY</span>
+                    <h3>Edge Switch Architectures</h3>
+                    <p>Deploying intelligent switching matrices in server environments to manage physical data packet routing across enterprise hardware arrays safely and effectively.</p>
                 </div>
-                <div class="matrix-item">
-                    <div class="matrix-left">
-                        <span class="matrix-label">Statutory Lifecycle Sweeps</span>
-                        <span class="matrix-sub">System-enforced document retention and automated purge registers built to satisfy the Nigeria Data Protection Act.</span>
-                    </div>
-                    <span class="matrix-tag">NDPA_2026</span>
+                <!-- Service Node 3 -->
+                <div class="service-node">
+                    <span class="node-index">03 / CAPABILITY</span>
+                    <h3>Core Firewall Systems</h3>
+                    <p>Positioning boundary defensive line systems to scrub incoming and outgoing internet packets, neutralizing modern malware, ransomware vectors, and illegitimate edge connections.</p>
+                </div>
+                <!-- Service Node 4 -->
+                <div class="service-node">
+                    <span class="node-index">04 / CAPABILITY</span>
+                    <h3>Line-of-Sight Microwave Links</h3>
+                    <p>Configuring secure, point-to-point wireless dishes across short and medium distances to securely link remote compounds or processing assets without leaning on third-party fiber links.</p>
+                </div>
+                <!-- Service Node 5 -->
+                <div class="service-node">
+                    <span class="node-index">05 / CAPABILITY</span>
+                    <h3>VSAT Satellite Communication Terminals</h3>
+                    <p>Installing standalone satellite links to maintain high-security network integrity in fields lacking baseline land fiber networks, creating complete isolation from structural outages.</p>
+                </div>
+                <!-- Service Node 6 -->
+                <div class="service-node">
+                    <span class="node-index">06 / CAPABILITY</span>
+                    <h3>Industrial Digitization Operations</h3>
+                    <p>Converting massive historical physical paper volumes into fully indexed, searchable, text-parsed digital records for simple system ingestion.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Secure Connect Node -->
-    <section id="connect" class="section-frame" style="border-bottom: none;">
+    <section id="connect" class="section-frame">
         <div class="container">
             <div class="contact-box">
                 <h3>Secure Gateway Initiation</h3>
-                <p>Route formal infrastructure queries and service invitations directly to our administration panel.</p>
+                <p>Route formal infrastructure queries and project briefs directly to our administration panel.</p>
                 <a href="mailto:ioawobajo@gmail.com" class="secure-mailto">ioawobajo@gmail.com</a>
             </div>
         </div>
